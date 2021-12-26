@@ -4,7 +4,7 @@ import "../../css/Footer/Footer.css"
 
 function Footer (){
     return(
-        <footer>footer</footer>
+        <footer>&copy; copyright ahmedhakim 2021</footer>
     )
 }
 
