@@ -4,7 +4,7 @@ function Filter(props) {
     return (
         <div className='filter'>
             <h2>filter</h2>
-            <p>Number Of Product : 4</p>
+            <p>Number Of Product : {props.numberProduct}</p>
             <div className='filter-by-size'>
                 <span>Size</span>
                 <select onChange={props.handelFilterBySize} value={props.size} className="form-control">

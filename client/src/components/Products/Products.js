@@ -33,7 +33,7 @@ function Products(props) {
                             <span>${prod.price}</span>
                         </div>
                         <div className='d-flex justify-content-center'>
-                            <button className='btn btn-primary'>Add To Cart</button>
+                            <button onClick={()=>props.addToCart(prod)} className='btn btn-primary'>Add To Cart</button>
                         </div>
                     </div>
                 )
