@@ -14,7 +14,26 @@
   justify-content: space-between;
   align-items: center;
 }
+.pro-desc .p-title {
+  margin: 0 !important;
+}
 
 .items {
   margin: 10px 0;
+}
+
+.product-modal {
+  position: relative;
+}
+.product-modal .modal-img {
+  width: 40%;
+  height: 400px;
+}
+
+.close-modal {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 30px;
+  background-color: #c0c0c0;
 }
