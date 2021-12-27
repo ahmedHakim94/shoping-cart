@@ -5,6 +5,8 @@ import { words } from './words';
 import Products from './components/Products/Products';
 import data from "./data.json"
 import { useState } from 'react';
+import Filter from './components/Filter/Filter';
+
  
 
 
@@ -16,7 +18,7 @@ function App() {
       {/* <main>{words.content}</main> */}
       <div className='content container'>
         <Products product={product}/>
-        <div className='filter'>filter</div>
+        <Filter/>
       </div>
       <Footer/>
     </div>

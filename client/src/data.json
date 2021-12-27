@@ -21,7 +21,7 @@
         "imageurl":"/images/3.png",
         "desc":"this is product 3",
         "price":50,
-        "sizes":["l","xl"]
+        "sizes":["l","xxl"]
     },
     { 
         "id":"id4",
