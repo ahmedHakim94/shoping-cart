@@ -1,0 +1,19 @@
+.filter {
+  border: 1px solid #c0c0c0;
+  height: fit-content;
+  padding-bottom: 40px;
+}
+
+.filter h2 {
+  color: #fff;
+  background-color: #0099CC;
+  padding: 5px;
+}
+
+.filter p {
+  padding: 10px;
+}
+
+.filter-by-order, .filter-by-size {
+  padding: 10px;
+}
