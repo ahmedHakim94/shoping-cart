@@ -55,14 +55,11 @@ function App() {
     let isItemExist = false;
 
     cartItemClone.forEach(p => {
-    
       if (p.id === item.id) {
         p.qty++;
         isItemExist = true
       }
-
     })
-
     if (!isItemExist) {
       cartItemClone.push({ ...item, qty: 1 })
     }
