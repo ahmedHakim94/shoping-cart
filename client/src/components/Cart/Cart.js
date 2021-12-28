@@ -35,8 +35,9 @@ function Cart(props) {
             </div>
             {props.cartitems.map(item => {
                 return (
-                    <Slide right >
+                   
                     <div key={item.id} className='cart-items'>
+                         <Slide right >
                         <img src={item.imageurl} />
                         <div className='item-desc'>
                             <div className='item-info'>
@@ -46,9 +47,8 @@ function Cart(props) {
                             </div>
                             <button onClick={() => props.removeItem(item)} className='btn btn-primary'>Remove</button>
                         </div>
-
+                        </Slide>
                     </div>
-                    </Slide>
                 )
             })}
             {props.cartitems.length !== 0 &&
