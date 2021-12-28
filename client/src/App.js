@@ -7,13 +7,15 @@ import data from "./data.json"
 import { useEffect, useState } from 'react';
 import Filter from './components/Filter/Filter';
 import Cart from './components/Cart/Cart';
+import { Provider } from 'react-redux'
+import store from './store/store';
 
 
 function App() {
   const [product, setProduct] = useState(data)
   const [size, setSize] = useState("")
   const [order, SetOrder] = useState("")
-  const [cartitems, setCartItems] = useState(JSON.parse(localStorage.getItem("cartItems"))||[])
+  const [cartitems, setCartItems] = useState(JSON.parse(localStorage.getItem("cartItems")) || [])
 
 
   const handelFilterBySize = (e) => {
@@ -51,7 +53,7 @@ function App() {
 
   const addToCart = (item) => {
     const cartItemClone = [...cartitems];
-    
+
     let isItemExist = false;
 
     cartItemClone.forEach(p => {
@@ -68,33 +70,35 @@ function App() {
 
   const removeItem = (item) => {
     const cartitemclone = [...cartitems];
-    setCartItems(cartitemclone.filter( p => p.id !== item.id))
+    setCartItems(cartitemclone.filter(p => p.id !== item.id))
   }
-  useEffect(()=>{
-    localStorage.setItem("cartItems",JSON.stringify(cartitems))
-  },[cartitems])
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartitems))
+  }, [cartitems])
 
   return (
-    <div className="layout">
-      <Header />
-      {/* <main>{words.content}</main> */}
-      <div>
-        <div className='content container'>
-          <Products product={product} addToCart={addToCart} />
-          <Filter
-            numberProduct={product.length}
-            handelFilterBySize={handelFilterBySize}
-            handelFilterByOrder={handelFilterByOrder}
-            order={order}
-            size={size} />
+    <Provider store={store}>
+      <div className="layout">
+        <Header />
+        {/* <main>{words.content}</main> */}
+        <div>
+          <div className='content container'>
+            <Products product={product} addToCart={addToCart} />
+            <Filter
+              numberProduct={product.length}
+              handelFilterBySize={handelFilterBySize}
+              handelFilterByOrder={handelFilterByOrder}
+              order={order}
+              size={size} />
+
+          </div>
+          <Cart cartitems={cartitems} removeItem={removeItem} />
 
         </div>
-        <Cart cartitems={cartitems} removeItem={removeItem}/>
 
+        <Footer />
       </div>
-
-      <Footer />
-    </div>
+    </Provider>
   );
 }
 
