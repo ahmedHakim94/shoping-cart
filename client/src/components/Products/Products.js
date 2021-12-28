@@ -4,6 +4,7 @@ import Modal from 'react-modal'
 import "../../css/Products/Produc.css"
 import ProductModal from './ProductModal'
 
+import Bounce  from 'react-reveal/Bounce'
 
 function Products(props) {
     const [product, setProduct] = useState("")
@@ -21,6 +22,7 @@ function Products(props) {
     }
 
     return (
+        <Bounce left cascade>
         <div className='products row'>
             {props.product.map(prod => {
                 return (
@@ -42,6 +44,7 @@ function Products(props) {
             
 
         </div>
+        </Bounce>
     )
 }
 
