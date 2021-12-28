@@ -47,7 +47,6 @@ function Cart(props) {
                             <button onClick={() => props.removeItem(item)} className='btn btn-primary'>Remove</button>
                         </div>
 
-
                     </div>
                     </Slide>
                 )
@@ -62,7 +61,6 @@ function Cart(props) {
             }
 
             <CheckoutForm handelinput={handelinput} handelForm={handelForm} checkoutForm={checkoutForm} setCheckoutForm={setCheckoutForm} />
-
 
         </div>
     )
