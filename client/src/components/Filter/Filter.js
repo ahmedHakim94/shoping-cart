@@ -1,8 +1,11 @@
 import React from 'react'
 import '../../css/Filter/Filter.css'
+import Bounce   from 'react-reveal/Bounce'
+
 function Filter(props) {
     return (
-        <div className='filter'>
+        <Bounce  right>
+            <div className='filter'>
             <h2>filter</h2>
             <p>Number Of Product : {props.numberProduct}</p>
             <div className='filter-by-size'>
@@ -26,6 +29,7 @@ function Filter(props) {
                 </select>
             </div>
         </div>
+        </Bounce >
     )
 }
 export default Filter;
