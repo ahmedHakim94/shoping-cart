@@ -15,6 +15,7 @@ function App() {
   const [order, SetOrder] = useState("")
   const [cartitems, setCartItems] = useState(JSON.parse(localStorage.getItem("cartItems"))||[])
 
+
   const handelFilterBySize = (e) => {
 
     setSize(e.target.value)
@@ -50,9 +51,11 @@ function App() {
 
   const addToCart = (item) => {
     const cartItemClone = [...cartitems];
+    
     let isItemExist = false;
 
     cartItemClone.forEach(p => {
+    
       if (p.id === item.id) {
         p.qty++;
         isItemExist = true
