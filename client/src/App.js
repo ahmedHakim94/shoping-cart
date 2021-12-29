@@ -7,9 +7,8 @@ import data from "./data.json"
 import { useEffect, useState } from 'react';
 import Filter from './components/Filter/Filter';
 import Cart from './components/Cart/Cart';
-import { Provider } from 'react-redux'
 import store from './store/store';
-
+import { Provider } from 'react-redux';
 
 function App() {
   const [product, setProduct] = useState(data)
@@ -52,7 +51,11 @@ function App() {
   }
 
   const addToCart = (item) => {
+    debugger
+
     const cartItemClone = [...cartitems];
+    console.log("item ",item)
+    console.log("cartItemClone ",cartItemClone)
 
     let isItemExist = false;
 
@@ -83,7 +86,7 @@ function App() {
         {/* <main>{words.content}</main> */}
         <div>
           <div className='content container'>
-            <Products product={product} addToCart={addToCart} />
+            <Products  addToCart={addToCart} />
             <Filter
               numberProduct={product.length}
               handelFilterBySize={handelFilterBySize}

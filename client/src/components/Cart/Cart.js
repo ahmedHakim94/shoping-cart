@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import "../../css/Cart/Cart.css"
 import CheckoutForm from '../CheckoutForm/CheckoutForm'
+import { connect } from 'react-redux';
+
 
 import Slide  from 'react-reveal/Slide'
+import { fetchCarts } from '../../store/reducers/cartsReducer'
 
 
 
 function Cart(props) {
+    // console.log(props)
 
     const [checkoutForm, setCheckoutForm] = useState(false)
 
@@ -65,4 +69,14 @@ function Cart(props) {
         </div>
     )
 }
-export default Cart;
+
+const mapDispatchToProps = { fetchCarts }
+
+function mapStateToProps(state) {
+    return {
+        carts: state.carts.carts,
+        updateCarts: state.carts.updateCarts
+    }
+}
+
+export default Cart ;
