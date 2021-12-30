@@ -55,7 +55,7 @@ export const filterdSize = (products, value) => {
 }
 
 export const filterdOrder = (products, value) => {
-    debugger
+    
     return (dispatch) => {
         let cloneProduct = [...products]
         let newProduct = cloneProduct.sort( function (a, b) {
