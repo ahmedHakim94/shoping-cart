@@ -51,7 +51,7 @@ function App() {
   }
 
   const addToCart = (item) => {
-    debugger
+    
 
     const cartItemClone = [...cartitems];
     console.log("item ",item)
@@ -75,9 +75,9 @@ function App() {
     const cartitemclone = [...cartitems];
     setCartItems(cartitemclone.filter(p => p.id !== item.id))
   }
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartitems))
-  }, [cartitems])
+  // useEffect(() => {
+  //   localStorage.setItem("cartItems", JSON.stringify(cartitems))
+  // }, [cartitems])
 
   return (
     <Provider store={store}>
@@ -86,7 +86,7 @@ function App() {
         {/* <main>{words.content}</main> */}
         <div>
           <div className='content container'>
-            <Products  addToCart={addToCart} />
+            <Products   />
             <Filter
               numberProduct={product.length}
               handelFilterBySize={handelFilterBySize}
@@ -95,7 +95,7 @@ function App() {
               size={size} />
 
           </div>
-          <Cart cartitems={cartitems} removeItem={removeItem} />
+          <Cart  />
 
         </div>
 

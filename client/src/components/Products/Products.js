@@ -1,6 +1,7 @@
 import React, { Profiler, useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 
+import { addCart } from '../../store/reducers/cartsReducer';
 
 import Modal from 'react-modal'
 import "../../css/Products/Produc.css"
@@ -49,7 +50,7 @@ function Products(props) {
                                 <span>${prod.price}</span>
                             </div>
                             <div className='d-flex justify-content-center'>
-                                <button onClick={() => props.addToCart(prod)} className='btn btn-primary'>Add To Cart</button>
+                                <button onClick={() => props.addCart(prod)} className='btn btn-primary'>Add To Cart</button>
                             </div>
                         </div>
                     )
@@ -61,7 +62,7 @@ function Products(props) {
     )
 }
 
-const mapDispatchToProps = { fetchProducts }
+const mapDispatchToProps = { fetchProducts , addCart }
 
 function mapStateToProps(state) {
     return {
