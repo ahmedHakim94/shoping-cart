@@ -27,7 +27,6 @@ export const cartsReducer = (state = INITIAL_STATE, action) => {
 }
 
 export const addCart = (item) => {
-    debugger;
     return (dispatch , getState) => {
         const cartItems = getState().carts.cartItems
         const cartItemClone = [...cartItems];
