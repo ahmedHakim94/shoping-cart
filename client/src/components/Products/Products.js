@@ -28,12 +28,12 @@ function Products(props) {
         setOpen(false)
     }
 
-    useEffect(() => {
-        if (props.updateProducts) {
-            console.log(props.updateProducts);
-            console.log(props.products)
-        }
-    }, [props.updateProducts , props.products])
+    // useEffect(() => {
+    //     if (props.updateProducts) {
+    //         console.log(props.updateProducts);
+    //         console.log(props.products)
+    //     }
+    // }, [props.updateProducts , props.products])
 
     return (
         <Bounce left cascade>
@@ -65,7 +65,7 @@ const mapDispatchToProps = { fetchProducts }
 
 function mapStateToProps(state) {
     return {
-        products: state.products.products,
+        products: state.products.filterProduct,
         updateProducts: state.products.updateProducts
     }
 }
