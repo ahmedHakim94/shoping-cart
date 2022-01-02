@@ -4,12 +4,15 @@ import CheckoutForm from '../CheckoutForm/CheckoutForm'
 import { connect } from 'react-redux';
 import {  removeCart } from '../../store/reducers/cartsReducer';
 import Slide from 'react-reveal/Slide'
+import Modal from 'react-modal';
+
 
 
 function Cart(props) {
 
     const [checkoutForm, setCheckoutForm] = useState(false)
     const [value, setValue] = useState("")
+    const [order,setorder] = useState(false)
 
     const handelForm = (e) => {
         e.preventDefault();
@@ -17,6 +20,7 @@ function Cart(props) {
             name: value.name,
             email: value.email
         }
+        setorder(order);
     }
 
     const handelinput = (e) => {
@@ -45,6 +49,41 @@ function Cart(props) {
                     </Slide>
                 </div>
             ))}
+
+            <Modal isOpen={order} onRequestClose = {()=> setorder(false)} >
+                <div className='modalCartItem'> 
+                <span className='close-modal-checkout' onClick={()=> setorder(false)}>X</span>
+                    <p className='modalTitle'>Order Done Sucess</p>
+                    <table >
+                        <tr>
+                            <td>Name : </td>
+                            <td>{order.name}</td>
+                        </tr>
+                        <tr>
+                            <td>Email : </td>
+                            <td>{order.email}</td>
+                        </tr>
+                        <tr>
+                            <td>Total Salary : </td>
+                            <td>$ {props.cartitems.reduce((acc , p) => {
+                                return  acc + (p.qty * p.price) 
+                            }, 0 )}</td>
+                        </tr>
+                        <tr>
+                            <td>Selected Items : </td>
+                            <td>{props.cartitems.map(item => (
+                                <>
+                                <p>product Title : {item.title} <img src= {item.imageurl} alt={item.title} /></p>
+                                <p>Quantity : {item.qty}</p>
+                                <hr/>
+                                </>
+                            ))}</td>
+                        </tr>
+                    </table>
+
+                </div>
+
+            </Modal>
 
             {props.cartitems.length !== 0 &&
                 <div className='cart-footer'>
