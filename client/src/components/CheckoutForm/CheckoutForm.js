@@ -5,11 +5,12 @@ import Zoom from 'react-reveal/Zoom'
 
 
 function CheckoutForm(props) {
+
     return (
         <>
             {props.checkoutForm &&
                 <div className='checkform'>
-                    <span onClick={() => props.setCheckoutForm(false)}>&times;</span>
+                    <span className='close-form' onClick={() => props.setCheckoutForm(false)}>&times;</span>
                     <Zoom right>
 
                         <form onSubmit={props.handelForm}>

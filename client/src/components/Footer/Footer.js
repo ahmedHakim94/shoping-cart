@@ -5,7 +5,7 @@ import { words } from "../../words";
 
 function Footer (){
     return(
-        <footer>{words.footerTitle}</footer>
+        <footer>&copy; {words.footerTitle}</footer>
     )
 }
 

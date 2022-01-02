@@ -55,3 +55,30 @@
   font-size: 20px;
   font-weight: 900;
 }
+
+.close-modal-checkout {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 30px;
+}
+
+.modalTitle {
+  background-color: green;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+table {
+  border: 1px solid #c0c0c0;
+}
+table tr {
+  padding: 10px;
+  border: 1px solid #c0c0c0 !important;
+}
+table img {
+  width: 70px;
+}
