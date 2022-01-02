@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import {  removeCart } from '../../store/reducers/cartsReducer';
 import Slide from 'react-reveal/Slide'
 import Modal from 'react-modal';
-
+import CartModal from './CartModal';
 
 
 function Cart(props) {

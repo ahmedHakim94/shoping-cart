@@ -1,19 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const router = require('./routes/routes');
+const productRouter = require('./routes/routes');
+const orderRouter = require('./routes/orderRoutes');
+const runDB = require('./config/dp');
 
 
 const app = express();
 app.use(bodyParser.json());
-app.use('/',router)
+app.use('/',productRouter)
+app.use('/',orderRouter)
 
-const connectionString = 'mongodb://localhost/react-shopping-cart';
-mongoose.connect(connectionString, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-    .then(res => console.log("connection Done"))
+
+runDB();
 
 
 
