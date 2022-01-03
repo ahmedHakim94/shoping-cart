@@ -2,17 +2,21 @@ import React, { useState } from 'react'
 import "../../css/Cart/Cart.css"
 import CheckoutForm from '../CheckoutForm/CheckoutForm'
 import { connect } from 'react-redux';
-import {  removeCart } from '../../store/reducers/cartsReducer';
+import { removeCart } from '../../store/reducers/cartsReducer';
 import Slide from 'react-reveal/Slide'
 import Modal from 'react-modal';
 import CartModal from './CartModal';
+import { addOrder, clearOrder } from "../../store/reducers/orderReducer"
+import { useEffect } from "react";
+
 
 
 function Cart(props) {
 
+    console.log(props.order)
     const [checkoutForm, setCheckoutForm] = useState(false)
     const [value, setValue] = useState("")
-    const [order,setorder] = useState(false)
+    const [order, setorder] = useState(false)
 
     const handelForm = (e) => {
         e.preventDefault();
@@ -20,8 +24,16 @@ function Cart(props) {
             name: value.name,
             email: value.email
         }
-        setorder(order);
+        props.addOrder(order);
     }
+    const closeModal = () => {
+        props.clearOrder()
+        // localStorage.removeItem("cartItems")
+    }
+
+    // useEffect (()=>{
+    //    props.cartItems = (localStorage.getItem("cartItems")
+    // },[props.cartItems])
 
     const handelinput = (e) => {
         setValue((prevstate) => ({ ...prevstate, [e.target.name]: e.target.value }))
@@ -50,7 +62,7 @@ function Cart(props) {
                 </div>
             ))}
 
-           <CartModal order={order} setorder={setorder} cartitems={props.cartitems}/>
+            <CartModal order={props.order} closeModal={closeModal} cartitems={props.cartitems} />
 
             {props.cartitems.length !== 0 &&
                 <div className='cart-footer'>
@@ -60,16 +72,21 @@ function Cart(props) {
                     <button onClick={() => setCheckoutForm(true)} className='btn btn-primary'>Select Product</button>
                 </div>
             }
-            <CheckoutForm handelinput={handelinput} handelForm={handelForm} checkoutForm={checkoutForm} setCheckoutForm={setCheckoutForm} />
+            <CheckoutForm
+                handelinput={handelinput}
+                handelForm={handelForm}
+                checkoutForm={checkoutForm}
+                setCheckoutForm={setCheckoutForm} />
         </div>
     )
 }
 
-const mapDispatchToProps = { removeCart }
+const mapDispatchToProps = { removeCart, addOrder, clearOrder }
 
 function mapStateToProps(state) {
     return {
 
+        order: state.orders.order,
         cartitems: state.carts.cartItems
 
     }
