@@ -49,3 +49,22 @@
   display: flex;
   justify-content: space-between;
 }
+.nav{
+  background-color: #c0c0c0;
+
+}
+.nav ul{
+  display: flex;
+  text-decoration: none;
+  list-style: none;
+  padding: 15px;
+}
+.nav ul li a{
+  margin-right: 20px;
+  background: gray;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+
+}

@@ -4,19 +4,14 @@ import CheckoutForm from '../CheckoutForm/CheckoutForm'
 import { connect } from 'react-redux';
 import { removeCart } from '../../store/reducers/cartsReducer';
 import Slide from 'react-reveal/Slide'
-import Modal from 'react-modal';
 import CartModal from './CartModal';
 import { addOrder, clearOrder } from "../../store/reducers/orderReducer"
-import { useEffect } from "react";
-
-
 
 function Cart(props) {
 
     console.log(props.order)
     const [checkoutForm, setCheckoutForm] = useState(false)
     const [value, setValue] = useState("")
-    const [order, setorder] = useState(false)
 
     const handelForm = (e) => {
         e.preventDefault();
@@ -28,12 +23,8 @@ function Cart(props) {
     }
     const closeModal = () => {
         props.clearOrder()
-        // localStorage.removeItem("cartItems")
     }
 
-    // useEffect (()=>{
-    //    props.cartItems = (localStorage.getItem("cartItems")
-    // },[props.cartItems])
 
     const handelinput = (e) => {
         setValue((prevstate) => ({ ...prevstate, [e.target.name]: e.target.value }))
