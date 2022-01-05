@@ -1,74 +1,50 @@
-import React, { Profiler, useEffect, useState } from 'react'
-import { connect } from 'react-redux';
-
-import { addCart } from '../../store/reducers/cartsReducer';
-
-import Modal from 'react-modal'
-import "../../css/Products/Produc.css"
-import ProductModal from './ProductModal'
-
-import Bounce from 'react-reveal/Bounce'
-import { fetchProducts } from '../../store/reducers/productsReducer';
+import React, { useEffect, useState } from 'react'
+import "../../css/Products/Products.css"
+import ProductModal from './ProductModal';
+import Bounce from 'react-reveal/Bounce';
+import { connect } from 'react-redux'
+import { fetchProducts } from '../../store/actions/products';
+import { addToCart } from '../../store/actions/cart'
 
 function Products(props) {
-    const [product, setProduct] = useState("")
-    const [open, setOpen] = useState(false);
-
-    useEffect(() => {
-        props.fetchProducts()
-    }, []);
-
+    const [product, setProduct] = useState("");
 
     const openModal = (product) => {
         setProduct(product)
-        setOpen(true)
     }
 
     const closeModal = () => {
-        setProduct("")
-        setOpen(false)
+        setProduct(false)
     }
 
-    // useEffect(() => {
-    //     if (props.updateProducts) {
-    //         console.log(props.updateProducts);
-    //         console.log(props.products)
-    //     }
-    // }, [props.updateProducts , props.products])
+    useEffect( () => {
+        props.fetchProducts()
+    }, [])
 
     return (
         <Bounce left cascade>
-            <div className='products row'>
-                {props.products.map(prod => {
-                    return (
-                        <div key={prod.id} className='items col-md-3'>
-                            <div>
-                                <a href='#' onClick={() => openModal(prod)}><img className='pro-img' src={prod.imageurl} alt={prod.title} /></a>
-                            </div>
-                            <div className='pro-desc my-3'>
-                                <p className='p-title'>{prod.title}</p>
-                                <span>${prod.price}</span>
-                            </div>
-                            <div className='d-flex justify-content-center'>
-                                <button onClick={() => props.addCart(prod)} className='btn btn-primary'>Add To Cart</button>
-                            </div>
+            <div className="products-wrapper"> 
+                {props.products && props.products.length ? props.products.map(product => (
+                    <div className="product-item" key={product.id}> 
+                        <a href="#" onClick={() => openModal(product)}>
+                            <img src={product.imageUrl} alt={product.title} />
+                        </a>
+                        <div className="product-desc">
+                            <p>{product.title}</p>
+                            <span>${product.price}</span>
                         </div>
-                    )
-                }) }
-                <ProductModal closeModal={closeModal} product={product} open={open} />
+                        <button onClick={() => props.addToCart(product)}> Add To Cart </button>
+                    </div> 
+                )): "loading.."} 
 
+                <ProductModal product={product} closeModal={closeModal} />
             </div>
-        </Bounce>
+        </Bounce> 
     )
 }
 
-const mapDispatchToProps = { fetchProducts , addCart }
-
-function mapStateToProps(state) {
+export default connect( (state) => {
     return {
-        products: state.products.filterProduct,
-        updateProducts: state.products.updateProducts
+        products: state.products.filterProducts
     }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+}, { fetchProducts, addToCart } )(Products)

@@ -1,20 +1,16 @@
-import React from "react";
-import Products from "../components/Products/Products";
-import Filter from "../components/Filter/Filter";
-import Cart from "../components/Cart/Cart";
+import React from 'react'
+import Cart from '../components/Cart/Cart'
+import Filter from '../components/Filter/Filter'
+import Products from '../components/Products/Products'
 
-export default  function Home (){
-    return(
+export default function Home() {
+    return (
         <>
-            <div className='content container'>
-
-
-                <Products   />
-                <Filter
-                />
-
-            </div>
-            <Cart  />
+            <div className="wrapper">
+                <Products /> 
+                <Filter />
+            </div>        
+            <Cart />  
         </>
     )
 }
