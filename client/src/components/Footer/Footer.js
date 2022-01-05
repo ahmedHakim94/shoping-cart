@@ -1,12 +1,13 @@
-import React from "react";
+import React from 'react';
 import "../../css/Footer/Footer.css"
-import { words } from "../../words";
+import { words } from '../../words';
 
-
-function Footer (){
-    return(
-        <footer>&copy; {words.footerTitle}</footer>
+function Footer() {
+    return (
+        <footer>
+            {words.footerTitle}
+        </footer>
     )
 }
 
-export default Footer;
+export default Footer

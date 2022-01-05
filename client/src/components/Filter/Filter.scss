@@ -1,16 +1,26 @@
-.filter{
-    border: 1px solid #c0c0c0;
-    height: fit-content;
-    padding-bottom: 40px;
-}
-.filter h2{
+.filter-wrapper {
+  background-color: #fff;
+  border: 1px solid #c0c0c0;
+  display: flex;
+  flex-direction: column;
+
+  .filter-title {
+    background-color: #2a5ea5;
+    padding: 10px;
     color: #fff;
-    background-color: #0099CC;
-    padding: 5px;
-}
-.filter p{
-    padding: 10px;
-}
-.filter-by-order, .filter-by-size{
-    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  > div {
+    padding: 5px 20px;
+    margin-bottom: 13px;
+  }
+
+  select {
+    display: block;
+    height: 40px;
+    border: 1px solid #ddd;
+    width: 100%;
+    border-radius: 5px;
+  }
 }

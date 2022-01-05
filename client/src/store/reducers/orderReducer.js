@@ -1,57 +1,19 @@
-import { ADD_ORDER, REMOVE_ORDER ,CLEAR_CART } from "../actions/type"
+import { CLEAR_ORDER, CREATE_ORDER, FETCH_ORDERS } from "../actions/types";
 
-
-const INITIAL_STATE = {
-    order: [],
-}
-
-export const orderReducer = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
-        case ADD_ORDER:
+export const orderReducer = (state = {}, action) => {
+    switch(action.type) {
+        case FETCH_ORDERS: 
             return {
                 ...state,
-                order: action.data.order
+                orders: action.data.orders
             }
-        case REMOVE_ORDER:
-            return {
-                ...state,
-                order : []
-            }
+        case CREATE_ORDER: 
+            return {order: action.data.order};
+
+        case CLEAR_ORDER:
+            return {order: false}
+
         default:
             return state
-    }
-
-}
-
-
-export const addOrder = (order) => {
-    return (dispatch) => {
-        fetch('/api/orders', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            }, body: JSON.stringify(order)
-        })
-        .then(res => res.json())
-        .then(data => {
-            dispatch({
-                type: ADD_ORDER,
-                data: {
-                    order : data
-                }
-            })
-        })
-        localStorage.clear("cartItems");
-        dispatch({
-            type:CLEAR_CART
-        })
-    }
-}
-
-export const clearOrder =()=>{
-    return(dispatch) =>{
-        dispatch({
-            type:REMOVE_ORDER
-        })
     }
 }

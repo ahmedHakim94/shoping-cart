@@ -1,50 +1,48 @@
 import React from 'react'
-import '../../css/Filter/Filter.css'
-import Bounce from 'react-reveal/Bounce'
-import { connect } from 'react-redux'
-import { filterdSize, filterdOrder } from '../../store/reducers/productsReducer'
-
+import "../../css/Filter/Filter.css"
+import Flip from 'react-reveal/Flip';
+import {connect} from 'react-redux';
+import { filteredSize, filteredSort } from '../../store/actions/products'
 
 function Filter(props) {
-    console.log(props.sort)
     return (
-        <Bounce right>
-           {props.filterProduct && <div className='filter'>
-                <h2>filter</h2>
-                <p>Number Of Product : {props.filterProduct.length}</p>
-                <div className='filter-by-size'>
-                    <span>Size</span>
-                    <select onChange={(e) => props.filterdSize(props.products, e.target.value)} value={props.size} className="form-control">
-                        <option value="all">all</option>
-                        <option value="m">m</option>
-                        <option value="l">l</option>
-                        <option value="xl">xl</option>
-                        <option value="xxl">xxl</option>
+        <Flip left>
+            {props.filterProducts && <div className="filter-wrapper"> 
+                <h2 className="filter-title"> Filter </h2>
+                <div className="num-of-products"> Number of Products {props.filterProducts.length} </div>
+                <div className="filter-by-size">
+                    <span>Filter</span>
+                    <select value={props.size} className="filter-select" onChange={(e) => props.filteredSize(props.products, e.target.value)}>
+                        <option value="ALL">ALL</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
                     </select>
                 </div>
-
-                <div className='filter-by-order'>
+                <div className="filter-by-size">
                     <span>Order</span>
-                    <select onChange={(e) => props.filterdOrder(props.filterProduct, e.target.value)} value={props.sort} className="form-control">
-                        <option value="latest">latest</option>
-                        <option value="lower">lower</option>
-                        <option value="height">height</option>
-
+                    <select className="filter-select" value={props.sort} onChange={(e) => props.filteredSort(props.filterProducts, e.target.value)}>
+                        <option value="latest">Latest</option>
+                        <option value="lowest">lowest</option>
+                        <option value="highest">Highest</option>
                     </select>
                 </div>
             </div>}
-        </Bounce>
+        </Flip>
     )
 }
-const mapDispatchToProps = { filterdSize, filterdOrder }
 
-function mapStateToProps(state) {
+export default connect( (state) => {
     return {
         sort: state.products.sort,
         size: state.products.size,
-        products : state.products.products,
-        filterSortProducts: state.products.filterSortProducts,
-        filterProduct: state.products.filterProduct
+        products: state.products.products,
+        filterProducts: state.products.filterProducts
     }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+}, {
+    filteredSize,
+    filteredSort
+} )(Filter);
